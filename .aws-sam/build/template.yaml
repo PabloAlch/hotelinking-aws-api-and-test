@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  HelloApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.sayHelloApi
+      Runtime: nodejs14.x
+      CodeUri: HelloApi
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
+    Metadata:
+      SamResourceId: HelloApi
+Outputs:
+  MyApi:
+    Description: API Gateway endpoint URL
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+"first commit with aws and build to test (failed test)"
